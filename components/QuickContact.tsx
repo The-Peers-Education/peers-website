@@ -25,14 +25,14 @@ export function QuickContact() {
   return (
     <div className="fixed right-4 bottom-[max(1rem,env(safe-area-inset-bottom))] z-40 flex flex-col items-end gap-3 sm:right-6 sm:bottom-6">
       {open ? (
-        <ul className="flex flex-col items-end gap-2">
+        <ul id="quick-contact-options" className="flex flex-col items-end gap-2">
           {actions.map((action) => (
             <li key={action.label}>
               <a
                 href={action.href}
                 target={action.href.startsWith("http") ? "_blank" : undefined}
                 rel={action.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="inline-flex min-h-11 items-center gap-2 rounded-[10px] bg-white px-4 py-2 text-base font-medium text-deep-navy shadow-[0_10px_24px_-12px_rgba(27,58,92,0.45)] ring-1 ring-deep-navy/10"
+                className="inline-flex min-h-11 items-center gap-2 rounded-[10px] bg-white px-4 py-2 text-base font-medium text-deep-navy shadow-[0_10px_24px_-12px_rgba(27,58,92,0.45)] ring-1 ring-deep-navy/10 focus-visible:outline-none"
               >
                 <action.icon size={16} className="text-marigold" />
                 {action.label}
@@ -44,6 +44,7 @@ export function QuickContact() {
       <button
         type="button"
         aria-expanded={open}
+        aria-controls="quick-contact-options"
         aria-label={open ? "Close contact options" : "Open contact options"}
         onClick={() => setOpen((value) => !value)}
         className={cn(

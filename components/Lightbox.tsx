@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
@@ -23,6 +23,8 @@ export function Lightbox({
   onIndexChange: (index: number) => void;
 }) {
   const lenis = useLenis();
+  const closeRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDivElement>(null);
   const open = index !== null;
   const item = open ? items[index] : null;
 
@@ -47,11 +49,30 @@ export function Lightbox({
       if (event.key === "ArrowLeft") {
         onIndexChange(((index ?? 0) - 1 + items.length) % items.length);
       }
+      if (event.key === "Tab" && dialogRef.current) {
+        const focusable = Array.from(
+          dialogRef.current.querySelectorAll<HTMLElement>("button"),
+        );
+        if (focusable.length === 0) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     }
 
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [open, index, items.length, onClose, onIndexChange]);
+
+  useEffect(() => {
+    if (open) closeRef.current?.focus();
+  }, [open]);
 
   if (index === null || !item) return null;
 
@@ -72,6 +93,7 @@ export function Lightbox({
 
   return (
     <div
+      ref={dialogRef}
       role="dialog"
       aria-modal="true"
       aria-label={item.alt}
@@ -79,6 +101,7 @@ export function Lightbox({
       onClick={onClose}
     >
       <button
+        ref={closeRef}
         type="button"
         aria-label="Close photograph"
         className="absolute top-4 right-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-[10px] bg-white text-deep-navy"
@@ -126,7 +149,7 @@ export function Lightbox({
               priority
             />
           </motion.div>
-          <figcaption className="mt-3 text-center text-base text-white/85">
+          <figcaption className="mt-3 text-center text-base text-white">
             {item.alt}
           </figcaption>
         </figure>

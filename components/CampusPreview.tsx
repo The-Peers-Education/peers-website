@@ -25,7 +25,7 @@ export function CampusPreview() {
               alt={item.alt}
               fill
               quality={75}
-              className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transform-none lg:[@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.04]"
+              className="object-cover"
               sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 400px"
             />
           </button>

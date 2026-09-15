@@ -1,14 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2 } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import { applyingClasses, school } from "@/lib/content";
 import { Button } from "@/components/Button";
 import { SelectField } from "@/components/SelectField";
 import { cn } from "@/lib/cn";
 
 const fieldClass =
-  "mt-1.5 w-full rounded-[10px] border border-deep-navy/15 bg-white px-4 py-3 text-base text-ink outline-none transition-[border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] placeholder:text-muted/70 focus:border-deep-navy/40 focus:shadow-none";
+  "mt-1.5 min-h-12 w-full rounded-[10px] border border-deep-navy/15 bg-white px-4 py-3 text-base text-ink placeholder:text-base placeholder:text-muted outline-none transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:border-deep-navy/40 focus-visible:ring-2 focus-visible:ring-deep-navy focus-visible:ring-offset-2";
 
 const labelClass = "text-base font-medium text-deep-navy";
 
@@ -68,7 +68,7 @@ export function InquiryForm({ mode }: { mode: Mode }) {
   if (submitted) {
     return (
       <div className="rounded-[12px] border border-leaf/25 bg-leaf/10 px-6 py-10 text-center">
-        <CheckCircle2 className="mx-auto text-leaf" size={36} />
+        <CircleCheck className="mx-auto text-leaf" size={36} strokeWidth={1.75} />
         <h3 className="mt-3 font-display text-2xl font-bold text-deep-navy">
           Thank you — we have your message.
         </h3>

@@ -19,7 +19,7 @@ export function SectionHeading({
         <p
           className={cn(
             "text-sm font-semibold uppercase tracking-[0.18em]",
-            light ? "text-marigold" : "text-leaf",
+            light ? "text-marigold-bright" : "text-leaf",
           )}
         >
           {kicker}
@@ -37,7 +37,7 @@ export function SectionHeading({
         <p
           className={cn(
             "mt-3 max-w-2xl text-base leading-relaxed",
-            light ? "text-white/80" : "text-muted",
+            light ? "text-white" : "text-muted",
             align === "center" && "mx-auto",
           )}
         >

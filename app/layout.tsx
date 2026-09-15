@@ -5,6 +5,7 @@ import { AdmissionsCta } from "@/components/AdmissionsCta";
 import { Footer } from "@/components/Footer";
 import { QuickContact } from "@/components/QuickContact";
 import { SchemaJsonLd } from "@/components/SchemaJsonLd";
+import { SkipLink } from "@/components/SkipLink";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { school, ogImage } from "@/lib/content";
 import { schoolOrganizationSchema, siteUrl } from "@/lib/schema";
@@ -30,6 +31,10 @@ export const metadata: Metadata = {
   },
   description:
     "The Peers Education System — a modern school in Shad Bagh, Lahore, from Playgroup through Matric.",
+  icons: {
+    icon: [{ url: "/favicon.png", type: "image/png" }],
+    apple: "/apple-icon.png",
+  },
   openGraph: {
     title: school.name,
     description:
@@ -65,8 +70,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       >
         <SchemaJsonLd jsonLd={schoolOrganizationSchema()} />
         <SmoothScroll>
+          <SkipLink />
           <Navbar />
-          <main className="flex-1">{children}</main>
+          <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+            {children}
+          </main>
           <AdmissionsCta />
           <Footer />
           <QuickContact />

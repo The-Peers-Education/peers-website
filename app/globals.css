@@ -9,7 +9,8 @@
   --deep-navy: #1b3a5c;
   --leaf: #3f6f45;
   --cloud: #e6dfd0;
-  --muted: #4b5563;
+  --muted: #374151;
+  --marigold-bright: #f5c056;
 }
 
 @theme inline {
@@ -21,6 +22,7 @@
   --color-leaf: var(--leaf);
   --color-cloud: var(--cloud);
   --color-muted: var(--muted);
+  --color-marigold-bright: var(--marigold-bright);
   --font-display: var(--font-manrope);
   --font-sans: var(--font-inter);
 }
@@ -70,6 +72,24 @@ button:not(:disabled),
 select:not(:disabled),
 summary {
   cursor: pointer;
+}
+
+a[href]:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+[role="option"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--deep-navy);
+  outline-offset: 2px;
+}
+
+footer a[href]:focus-visible,
+footer button:focus-visible,
+.bg-deep-navy a[href]:focus-visible,
+.bg-deep-navy button:focus-visible {
+  outline-color: var(--marigold-bright);
 }
 
 button:disabled,

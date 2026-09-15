@@ -10,10 +10,10 @@ const desktopMotion =
 
 const variants = {
   primary:
-    "bg-marigold text-deep-navy shadow-[0_1px_0_rgba(27,58,92,0.16)] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#d88d16] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_10px_24px_-10px_rgba(27,58,92,0.45)]",
-  navy: "bg-deep-navy text-white lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#142c47] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_10px_24px_-10px_rgba(27,58,92,0.5)]",
+    "bg-marigold text-deep-navy lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#d88d16] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_10px_24px_-10px_rgba(27,58,92,0.45)]",
+  navy: "bg-deep-navy text-white focus-visible:ring-marigold lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#142c47] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_10px_24px_-10px_rgba(27,58,92,0.5)]",
   outline:
-    "border-2 border-white bg-transparent text-white lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white lg:[@media(hover:hover)_and_(pointer:fine)]:hover:text-deep-navy",
+    "border-2 border-white bg-transparent text-white focus-visible:ring-marigold lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white lg:[@media(hover:hover)_and_(pointer:fine)]:hover:text-deep-navy",
   ghost:
     "border-2 border-deep-navy bg-transparent text-deep-navy lg:[@media(hover:hover)_and_(pointer:fine)]:hover:bg-deep-navy lg:[@media(hover:hover)_and_(pointer:fine)]:hover:text-white",
 } as const;
@@ -21,7 +21,7 @@ const variants = {
 type Variant = keyof typeof variants;
 
 const base =
-  "group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-[10px] px-4 py-2 text-base font-normal focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-marigold disabled:cursor-not-allowed disabled:opacity-60";
+  "group inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-[10px] px-4 py-2 text-base font-normal outline-none focus-visible:ring-2 focus-visible:ring-deep-navy focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60";
 
 function Arrow() {
   return <ArrowRight className={desktopArrowClass} strokeWidth={2} />;

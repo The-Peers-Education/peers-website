@@ -40,13 +40,13 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-deep-navy via-deep-navy/55 to-deep-navy/25" />
         <Container className="relative flex flex-col pb-24 pt-28 sm:pb-32 sm:pt-36 lg:h-full lg:min-h-0 lg:justify-end">
-          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-marigold">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-marigold-bright">
             Playgroup to Matric
           </p>
           <h1 className="mt-3 max-w-3xl font-display text-[1.85rem] font-bold leading-[1.12] text-white sm:text-5xl lg:text-[3.5rem]">
             {school.tagline}
           </h1>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/85">
+          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white">
             Every child arrives with promise. We give them a calm classroom,
             teachers who notice them, and a clear path from Playgroup to Matric
             — so they leave ready for whatever comes next.
