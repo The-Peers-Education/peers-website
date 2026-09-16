@@ -31,6 +31,9 @@ export const metadata: Metadata = {
   },
   description:
     "The Peers Education System — a modern school in Shad Bagh, Lahore, from Playgroup through Matric.",
+  alternates: {
+    canonical: "/",
+  },
   icons: {
     icon: [{ url: "/favicon.png", type: "image/png" }],
     apple: "/apple-icon.png",
@@ -39,6 +42,9 @@ export const metadata: Metadata = {
     title: school.name,
     description:
       "The Peers Education System — a modern school in Shad Bagh, Lahore, from Playgroup through Matric.",
+    url: siteUrl,
+    siteName: school.name,
+    locale: "en_PK",
     type: "website",
     images: [ogImage],
   },

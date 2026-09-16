@@ -16,11 +16,23 @@ export const metadata: Metadata = {
   title: "Contact",
   description:
     "Visit The Peers Education System on Amir Road, Shad Bagh, Lahore — or send a message.",
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: "Contact | The Peers Education System",
     description:
       "Visit The Peers Education System on Amir Road, Shad Bagh, Lahore — or send a message.",
+    url: "https://the-peers-education.vercel.app/contact",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact | The Peers Education System",
+    description:
+      "Visit The Peers Education System on Amir Road, Shad Bagh, Lahore — or send a message.",
+    images: [ogImage.url],
   },
 };
 

@@ -10,11 +10,23 @@ export const metadata: Metadata = {
   title: "News",
   description:
     "School news and events at The Peers Education System, Shad Bagh.",
+  alternates: { canonical: "/news" },
   openGraph: {
     title: "News | The Peers Education System",
     description:
       "School news and events at The Peers Education System, Shad Bagh.",
+    url: "https://the-peers-education.vercel.app/news",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "News | The Peers Education System",
+    description:
+      "School news and events at The Peers Education System, Shad Bagh.",
+    images: [ogImage.url],
   },
 };
 

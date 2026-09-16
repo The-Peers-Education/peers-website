@@ -13,11 +13,23 @@ export const metadata: Metadata = {
   title: "About",
   description:
     "History, mission, and values of The Peers Education System in Shad Bagh, Lahore.",
+  alternates: { canonical: "/about" },
   openGraph: {
     title: "About | The Peers Education System",
     description:
       "History, mission, and values of The Peers Education System in Shad Bagh, Lahore.",
+    url: "https://the-peers-education.vercel.app/about",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About | The Peers Education System",
+    description:
+      "History, mission, and values of The Peers Education System in Shad Bagh, Lahore.",
+    images: [ogImage.url],
   },
 };
 

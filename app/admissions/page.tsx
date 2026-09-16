@@ -19,11 +19,23 @@ export const metadata: Metadata = {
   title: "Admissions",
   description:
     "How to apply to The Peers Education System — inquiry, campus visit, assessment, and enrollment.",
+  alternates: { canonical: "/admissions" },
   openGraph: {
     title: "Admissions | The Peers Education System",
     description:
       "How to apply to The Peers Education System — inquiry, campus visit, assessment, and enrollment.",
+    url: "https://the-peers-education.vercel.app/admissions",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Admissions | The Peers Education System",
+    description:
+      "How to apply to The Peers Education System — inquiry, campus visit, assessment, and enrollment.",
+    images: [ogImage.url],
   },
 };
 

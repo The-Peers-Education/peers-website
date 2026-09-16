@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CircleCheck } from "lucide-react";
-import { applyingClasses, school } from "@/lib/content";
+import { applyingClasses } from "@/lib/content";
 import { Button } from "@/components/Button";
 import { SelectField } from "@/components/SelectField";
 import { cn } from "@/lib/cn";
@@ -11,6 +11,19 @@ const fieldClass =
   "mt-1.5 min-h-12 w-full rounded-[10px] border border-deep-navy/15 bg-white px-4 py-3 text-base text-ink placeholder:text-base placeholder:text-muted outline-none transition-[border-color,box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] focus-visible:border-deep-navy/40 focus-visible:ring-2 focus-visible:ring-deep-navy focus-visible:ring-offset-2";
 
 const labelClass = "text-base font-medium text-deep-navy";
+
+const PRODUCTION_API_URL = "https://peers-api-h801.onrender.com/api/v1";
+const LOCAL_API_URL = "http://localhost:8080/api/v1";
+
+function resolveApiBaseUrl() {
+  const raw = (
+    process.env.NEXT_PUBLIC_API_URL ??
+    (process.env.NODE_ENV === "production" ? PRODUCTION_API_URL : LOCAL_API_URL)
+  )
+    .trim()
+    .replace(/\/+$/, "");
+  return raw.endsWith("/api/v1") ? raw : `${raw}/api/v1`;
+}
 
 type Mode = "admissions" | "contact";
 
@@ -28,27 +41,24 @@ export function InquiryForm({ mode }: { mode: Mode }) {
     const data = Object.fromEntries(new FormData(form).entries());
 
     try {
-      const response = await fetch(
-        `https://formsubmit.co/ajax/${school.formRecipient}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            ...data,
-            form: mode === "admissions" ? "Admission inquiry" : "Contact message",
-            school: school.name,
-            _subject:
-              mode === "admissions"
-                ? `Admission inquiry — ${school.shortName}`
-                : `Contact message — ${school.shortName}`,
-            _template: "table",
-            _captcha: "false",
-          }),
+      const response = await fetch(`${resolveApiBaseUrl()}/inquiries`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
         },
-      );
+        body: JSON.stringify({
+          type: mode === "admissions" ? "ADMISSION" : "CONTACT",
+          name: String(data.name ?? data.parentName ?? ""),
+          parentName: data.parentName,
+          studentName: data.studentName,
+          classApplying: data.classApplying,
+          email: data.email,
+          phone: data.phone,
+          preferredContact: data.preferredContact,
+          message: data.message,
+        }),
+      });
 
       if (!response.ok) {
         throw new Error("Send failed");

@@ -10,11 +10,23 @@ export const metadata: Metadata = {
   title: "Gallery",
   description:
     "Campus, events, sports, and classroom life at The Peers Education System.",
+  alternates: { canonical: "/gallery" },
   openGraph: {
     title: "Gallery | The Peers Education System",
     description:
       "Campus, events, sports, and classroom life at The Peers Education System.",
+    url: "https://the-peers-education.vercel.app/gallery",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Gallery | The Peers Education System",
+    description:
+      "Campus, events, sports, and classroom life at The Peers Education System.",
+    images: [ogImage.url],
   },
 };
 

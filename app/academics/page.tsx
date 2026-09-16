@@ -13,11 +13,23 @@ export const metadata: Metadata = {
   title: "Academics",
   description:
     "Class levels, curriculum, and co-curricular life at The Peers Education System.",
+  alternates: { canonical: "/academics" },
   openGraph: {
     title: "Academics | The Peers Education System",
     description:
       "Class levels, curriculum, and co-curricular life at The Peers Education System.",
+    url: "https://the-peers-education.vercel.app/academics",
+    siteName: "The Peers Education System",
+    locale: "en_PK",
+    type: "website",
     images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Academics | The Peers Education System",
+    description:
+      "Class levels, curriculum, and co-curricular life at The Peers Education System.",
+    images: [ogImage.url],
   },
 };
 
