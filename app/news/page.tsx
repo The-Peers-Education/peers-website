@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { SchemaJsonLd } from "@/components/SchemaJsonLd";
-import { ogImage } from "@/lib/content";
+import { newsItems, ogImage } from "@/lib/content";
+import { loadNewsStories } from "@/lib/cms";
 import { newsPageSchema } from "@/lib/schema";
 import { Container } from "@/components/Container";
 import { NewsGrid } from "@/components/NewsGrid";
@@ -30,7 +31,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function NewsPage() {
+export default async function NewsPage() {
+  const stories = (await loadNewsStories()) ?? newsItems;
+
   return (
     <>
       <SchemaJsonLd jsonLd={newsPageSchema()} />
@@ -41,7 +44,7 @@ export default function NewsPage() {
       />
       <section className="py-16 sm:py-24">
         <Container>
-          <NewsGrid />
+          <NewsGrid items={stories} />
         </Container>
       </section>
     </>

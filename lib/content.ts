@@ -22,7 +22,7 @@ export const school = {
 };
 
 export const ogImage = {
-  url: "/images/home-page.jpg",
+  url: "/images/home/home-page.jpg",
   width: 1319,
   height: 737,
   alt: "The Peers Education System",
@@ -308,47 +308,47 @@ export const applyingClasses = [
 
 export const galleryItems = [
   {
-    src: "/images/modern-campus-1.jpg",
+    src: "/images/gallery/campus/campus-1.jpg",
     alt: "Campus courtyard at The Peers Education System",
     category: "Campus",
   },
   {
-    src: "/images/modern-events-1.jpg",
+    src: "/images/gallery/events/events-1.jpg",
     alt: "Morning assembly in the courtyard",
     category: "Events",
   },
   {
-    src: "/images/modern-sports-1.jpg",
+    src: "/images/gallery/sports/sports-1.jpg",
     alt: "Sports day on the school field",
     category: "Sports",
   },
   {
-    src: "/images/modern-academics-1.jpg",
+    src: "/images/gallery/academics/academics-1.jpg",
     alt: "A primary classroom ready for the day",
     category: "Academics",
   },
   {
-    src: "/images/modern-campus-2.jpg",
+    src: "/images/gallery/campus/campus-2.jpg",
     alt: "Playground on campus",
     category: "Campus",
   },
   {
-    src: "/images/modern-events-2.jpg",
+    src: "/images/gallery/events/events-2.jpg",
     alt: "Cultural day performance",
     category: "Events",
   },
   {
-    src: "/images/modern-academics-2.jpg",
+    src: "/images/gallery/academics/academics-2.jpg",
     alt: "Hands-on science activity table",
     category: "Academics",
   },
   {
-    src: "/images/modern-campus-3.jpg",
+    src: "/images/gallery/campus/campus-3.jpg",
     alt: "Library reading corner",
     category: "Campus",
   },
   {
-    src: "/images/modern-hero.jpg",
+    src: "/images/home/hero.jpg",
     alt: "Campus entrance on a bright afternoon",
     category: "Campus",
   },
@@ -370,7 +370,7 @@ export const newsItems = [
     excerpt:
       "Flag, anthem, and student speeches — a short, sincere assembly before the rest of the school day.",
     body: "The morning began in the courtyard with the flag and the anthem, then a few student speeches. Classes continued afterwards, as they should — a national day kept close to ordinary school life.",
-    image: "/images/modern-events-2.jpg",
+    image: "/images/gallery/events/events-2.jpg",
     category: "Events",
   },
   {
@@ -380,7 +380,7 @@ export const newsItems = [
     excerpt:
       "Board results will be shared with families as soon as they are issued. Please watch this page and our Facebook updates.",
     body: "As soon as the board issues results, the office will inform families. If you need a copy of a result card or have a question about the next step, call during school hours.",
-    image: "/images/modern-academics-1.jpg",
+    image: "/images/gallery/academics/academics-1.jpg",
     category: "Academics",
   },
   {
@@ -390,7 +390,7 @@ export const newsItems = [
     excerpt:
       "Class lists, first-week routines, and a reminder that the office is open for any parent who needs a quiet word.",
     body: "The first week is for settling in: finding the classroom, meeting the teacher, and learning the morning routine. If your child is new to the campus, come a few minutes early and we will walk you to the gate.",
-    image: "/images/modern-events-1.jpg",
+    image: "/images/gallery/events/events-1.jpg",
     category: "School life",
   },
   {
@@ -400,7 +400,7 @@ export const newsItems = [
     excerpt:
       "For Playgroup and Nursery families: how the first weeks work, what to pack, and who to call if a child is unsettled.",
     body: "Bring questions about drop-off, snacks, and the first days of separation. Early years settle faster when home and school use the same calm language.",
-    image: "/images/modern-campus-2.jpg",
+    image: "/images/gallery/campus/campus-2.jpg",
     category: "Admissions",
   },
   {
@@ -410,7 +410,7 @@ export const newsItems = [
     excerpt:
       "A full morning of races, house spirit, and cheering from the sidelines — the kind of day families remember.",
     body: "Every child had a race or a game. Parents filled the sidelines, and the day ended with house points rather than only first-place medals.",
-    image: "/images/modern-sports-1.jpg",
+    image: "/images/gallery/sports/sports-1.jpg",
     category: "Sports",
   },
   {
@@ -420,7 +420,7 @@ export const newsItems = [
     excerpt:
       "Primary classes spent a week on simple experiments, observation notebooks, and a small display for parents.",
     body: "The point was not a fairground of posters, but looking carefully: what changed, what stayed the same, and how to write it down in a notebook.",
-    image: "/images/modern-academics-2.jpg",
+    image: "/images/gallery/academics/academics-2.jpg",
     category: "Academics",
   },
 ] as const;
@@ -429,12 +429,12 @@ export const principals = [
   {
     name: "Zeeshan Ahmad",
     title: "Principal",
-    image: "/images/zeeshan.jpg",
+    image: "/images/people/zeeshan.jpg",
   },
   {
     name: "Iftikhar Sadiq",
     title: "Principal",
-    image: "/images/iftikhar.jpg",
+    image: "/images/people/iftikhar.jpg",
   },
 ] as const;
 

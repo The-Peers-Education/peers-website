@@ -1,32 +1,28 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import Image from "next/image";
-import { newsItems } from "@/lib/content";
 import { cn } from "@/lib/cn";
+import type { SiteNews } from "@/lib/cms";
+import { Photo } from "@/components/Photo";
 
-const categories = [
-  "All",
-  ...Array.from(new Set(newsItems.map((item) => item.category))),
-] as const;
-
-export function NewsGrid() {
-  const [filter, setFilter] = useState<(typeof categories)[number]>("All");
+export function NewsGrid({ items: stories }: { items: readonly SiteNews[] }) {
+  const categories = useMemo(
+    () => ["All", ...Array.from(new Set(stories.map((item) => item.category)))],
+    [stories],
+  );
+  const [filter, setFilter] = useState("All");
   const [open, setOpen] = useState<string | null>(null);
 
   useEffect(() => {
     const hash = window.location.hash.replace("#", "");
-    if (newsItems.some((item) => item.slug === hash)) {
+    if (stories.some((item) => item.slug === hash)) {
       setOpen(hash);
     }
-  }, []);
+  }, [stories]);
 
   const items = useMemo(
-    () =>
-      filter === "All"
-        ? newsItems
-        : newsItems.filter((item) => item.category === filter),
-    [filter],
+    () => (filter === "All" ? stories : stories.filter((item) => item.category === filter)),
+    [filter, stories],
   );
 
   return (
@@ -58,7 +54,7 @@ export function NewsGrid() {
               className="scroll-mt-32 overflow-hidden rounded-[12px] border border-deep-navy/10 bg-white"
             >
               <div className="relative aspect-[16/9]">
-                <Image
+                <Photo
                   src={item.image}
                   alt={item.title}
                   fill
@@ -86,7 +82,7 @@ export function NewsGrid() {
                   </span>
                 </button>
                 {expanded ? (
-                  <p className="mt-3 text-base text-muted">{item.body}</p>
+                  <p className="mt-3 whitespace-pre-line text-base text-muted">{item.body}</p>
                 ) : null}
               </div>
             </li>

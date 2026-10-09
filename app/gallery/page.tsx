@@ -3,7 +3,8 @@ import { Container } from "@/components/Container";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { PageHero } from "@/components/PageHero";
 import { SchemaJsonLd } from "@/components/SchemaJsonLd";
-import { ogImage, school } from "@/lib/content";
+import { galleryItems, ogImage, school } from "@/lib/content";
+import { loadGalleryPhotos } from "@/lib/cms";
 import { galleryPageSchema } from "@/lib/schema";
 
 export const metadata: Metadata = {
@@ -30,7 +31,9 @@ export const metadata: Metadata = {
   },
 };
 
-export default function GalleryPage() {
+export default async function GalleryPage() {
+  const photos = (await loadGalleryPhotos()) ?? galleryItems;
+
   return (
     <>
       <SchemaJsonLd jsonLd={galleryPageSchema()} />
@@ -41,7 +44,7 @@ export default function GalleryPage() {
       />
       <section className="py-16 sm:py-24">
         <Container>
-          <GalleryGrid />
+          <GalleryGrid photos={photos} />
         </Container>
       </section>
     </>

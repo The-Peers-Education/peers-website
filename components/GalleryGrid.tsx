@@ -1,21 +1,20 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { galleryCategories, galleryItems } from "@/lib/content";
 import { Lightbox } from "@/components/Lightbox";
+import { Photo } from "@/components/Photo";
 import { cn } from "@/lib/cn";
+import type { SitePhoto } from "@/lib/cms";
 
-export function GalleryGrid() {
+export function GalleryGrid({ photos = galleryItems }: { photos?: readonly SitePhoto[] }) {
   const [filter, setFilter] = useState<(typeof galleryCategories)[number]>("All");
   const [index, setIndex] = useState<number | null>(null);
 
   const items = useMemo(
     () =>
-      filter === "All"
-        ? galleryItems
-        : galleryItems.filter((item) => item.category === filter),
-    [filter],
+      filter === "All" ? photos : photos.filter((item) => item.category === filter),
+    [filter, photos],
   );
 
   return (
@@ -50,14 +49,14 @@ export function GalleryGrid() {
                 onClick={() => setIndex(itemIndex)}
                 aria-label={`Open photograph: ${item.alt}`}
               >
-                <Image
+                <Photo
                   src={item.src}
                   alt={item.alt}
                   width={800}
                   height={533}
                   quality={75}
                   sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 400px"
-                  className="h-auto w-full object-cover"
+                  className="aspect-[3/2] h-auto w-full object-cover"
                 />
               </button>
               <figcaption className="flex flex-col gap-1 px-3 py-2 text-sm text-muted sm:flex-row sm:items-center sm:justify-between">

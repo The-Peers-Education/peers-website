@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Quote } from "lucide-react";
 import { ButtonLink, TextLink } from "@/components/Button";
 import { CampusPreview } from "@/components/CampusPreview";
+import { Photo } from "@/components/Photo";
 import { Container } from "@/components/Container";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { IconMark } from "@/components/IconMark";
@@ -20,17 +21,23 @@ import {
   school,
   whyPeers,
 } from "@/lib/content";
+import { loadHomepagePhotos, loadNewsStories } from "@/lib/cms";
 import { homePageSchema } from "@/lib/schema";
 
-export default function HomePage() {
-  const previewNews = newsItems.slice(0, 3);
+export default async function HomePage() {
+  const [homepagePhotos, publishedNews] = await Promise.all([
+    loadHomepagePhotos(),
+    loadNewsStories(),
+  ]);
+  const previewNews = (publishedNews ?? newsItems).slice(0, 3);
+  const showingCampus = homepagePhotos.album === "CAMPUS";
 
   return (
     <>
       <SchemaJsonLd jsonLd={homePageSchema()} />
       <section className="home-hero relative overflow-hidden">
         <Image
-          src="/images/modern-hero.jpg"
+          src="/images/home/hero.jpg"
           alt="The Peers Education System campus in Shad Bagh, Lahore"
           fill
           priority
@@ -166,12 +173,21 @@ export default function HomePage() {
       <section className="py-12 sm:py-16 lg:py-24">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading kicker="On campus" title="Campus life" />
-            <TextLink href="/gallery">
-              View full gallery
-            </TextLink>
+            <SectionHeading
+              kicker={showingCampus ? "On campus" : "Board years"}
+              title={showingCampus ? "Campus life" : "Results"}
+            />
+            {showingCampus ? <TextLink href="/gallery">View full gallery</TextLink> : null}
           </div>
-          <CampusPreview />
+          {homepagePhotos.items.length > 0 ? (
+            <CampusPreview items={homepagePhotos.items} />
+          ) : (
+            <p className="mt-8 max-w-2xl text-base text-muted">
+              {showingCampus
+                ? "Campus photos will appear here once they are uploaded from the school office."
+                : "Result photos will appear here once they are uploaded from the school office."}
+            </p>
+          )}
         </Container>
       </section>
 
@@ -195,7 +211,7 @@ export default function HomePage() {
                 className="overflow-hidden rounded-[12px] bg-white ring-1 ring-deep-navy/8 transition-[box-shadow] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] lg:[@media(hover:hover)_and_(pointer:fine)]:hover:shadow-[0_12px_28px_-16px_rgba(27,58,92,0.35)]"
               >
                 <div className="relative aspect-[16/10]">
-                  <Image
+                  <Photo
                     src={item.image}
                     alt={item.title}
                     fill

@@ -1,18 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
-import { Lightbox } from "@/components/Lightbox";
-import { galleryItems } from "@/lib/content";
+import { Lightbox, type LightboxItem } from "@/components/Lightbox";
+import { Photo } from "@/components/Photo";
 
-export function CampusPreview() {
-  const items = galleryItems.slice(0, 6);
+export function CampusPreview({
+  items,
+}: {
+  items: readonly LightboxItem[];
+}) {
+  const preview = items.slice(0, 6);
   const [index, setIndex] = useState<number | null>(null);
 
   return (
     <>
       <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
-        {items.map((item, itemIndex) => (
+        {preview.map((item, itemIndex) => (
           <button
             key={item.src}
             type="button"
@@ -20,7 +23,7 @@ export function CampusPreview() {
             className="group relative aspect-[4/3] overflow-hidden rounded-[12px]"
             aria-label={`Open photograph: ${item.alt}`}
           >
-            <Image
+            <Photo
               src={item.src}
               alt={item.alt}
               fill
@@ -32,7 +35,7 @@ export function CampusPreview() {
         ))}
       </div>
       <Lightbox
-        items={items}
+        items={preview}
         index={index}
         onClose={() => setIndex(null)}
         onIndexChange={setIndex}
