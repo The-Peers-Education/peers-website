@@ -338,21 +338,6 @@ export const resultItems = [
     category: "Results",
   },
   {
-    src: "/images/results/result-18.jpg",
-    alt: "Gold, silver, and bronze medals in the UniCEP Art Design Olympiad and science competitions",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-19.jpg",
-    alt: "Momna Shafiq and H. Shaheer Amjad with calligraphy, debate, and naat positions",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-20.jpg",
-    alt: "Abdul Ghani, 2nd position in wrestling under BISE Lahore",
-    category: "Results",
-  },
-  {
     src: "/images/results/result-11.jpg",
     alt: "N-CATS Scienceon certificate poster for The Peers Education System",
     category: "Results",
@@ -405,6 +390,21 @@ export const resultItems = [
   {
     src: "/images/results/result-1.jpg",
     alt: "Students with N-CATS Scienceon certificates at The Peers Education System",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-18.jpg",
+    alt: "Gold, silver, and bronze medals in the UniCEP Art Design Olympiad and science competitions",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-19.jpg",
+    alt: "Momna Shafiq and H. Shaheer Amjad with calligraphy, debate, and naat positions",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-20.jpg",
+    alt: "Abdul Ghani, 2nd position in wrestling under BISE Lahore",
     category: "Results",
   },
 ] as const;

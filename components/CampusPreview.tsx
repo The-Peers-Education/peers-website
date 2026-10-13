@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { A11y, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -18,6 +18,7 @@ export function CampusPreview({
   pageSize?: number;
 }) {
   const swiperRef = useRef<SwiperInstance | null>(null);
+  const paginationRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState<number | null>(null);
   const [atStart, setAtStart] = useState(true);
   const [atEnd, setAtEnd] = useState(false);
@@ -29,26 +30,21 @@ export function CampusPreview({
     setAtEnd(swiper.isEnd);
   }
 
+  useEffect(() => {
+    const swiper = swiperRef.current;
+    const pagination = swiper?.params.pagination;
+    if (!swiper || !paginationRef.current || !pagination || typeof pagination === "boolean") return;
+    pagination.el = paginationRef.current;
+    swiper.pagination.destroy();
+    swiper.pagination.init();
+    swiper.pagination.render();
+    swiper.pagination.update();
+  }, [paged, items]);
+
   return (
     <>
       {paged ? (
         <div className="mt-10">
-          <div className="mb-4 flex items-center justify-end gap-2">
-            <SliderButton
-              label="Previous results"
-              disabled={atStart}
-              onClick={() => swiperRef.current?.slidePrev()}
-            >
-              <ChevronLeft size={20} />
-            </SliderButton>
-            <SliderButton
-              label="Next results"
-              disabled={atEnd}
-              onClick={() => swiperRef.current?.slideNext()}
-            >
-              <ChevronRight size={20} />
-            </SliderButton>
-          </div>
           <Swiper
             className="results-swiper"
             modules={[Pagination, A11y]}
@@ -56,6 +52,12 @@ export function CampusPreview({
             spaceBetween={16}
             pagination={{ clickable: true }}
             watchOverflow
+            onBeforeInit={(swiper) => {
+              const pagination = swiper.params.pagination;
+              if (pagination && typeof pagination !== "boolean") {
+                pagination.el = paginationRef.current;
+              }
+            }}
             onSwiper={(swiper) => {
               swiperRef.current = swiper;
               syncEdges(swiper);
@@ -90,6 +92,25 @@ export function CampusPreview({
               </SwiperSlide>
             ))}
           </Swiper>
+          <div className="mt-4 flex items-center justify-center md:justify-between">
+            <div ref={paginationRef} className="results-swiper-dots" />
+            <div className="hidden items-center gap-2 md:flex">
+              <SliderButton
+                label="Previous results"
+                disabled={atStart}
+                onClick={() => swiperRef.current?.slidePrev()}
+              >
+                <ChevronLeft size={20} />
+              </SliderButton>
+              <SliderButton
+                label="Next results"
+                disabled={atEnd}
+                onClick={() => swiperRef.current?.slideNext()}
+              >
+                <ChevronRight size={20} />
+              </SliderButton>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
