@@ -97,7 +97,7 @@ export function Lightbox({
       role="dialog"
       aria-modal="true"
       aria-label={item.alt}
-      className="fixed inset-0 z-[60] flex cursor-pointer items-center justify-center bg-deep-navy/88 px-2 py-16 sm:p-4"
+      className="fixed inset-0 z-[60] flex cursor-pointer items-center justify-center bg-paper px-2 py-16 sm:p-4"
       onClick={onClose}
     >
       <button
@@ -134,8 +134,8 @@ export function Lightbox({
             onDragEnd={onDragEnd}
             className={
               items.length > 1
-                ? "relative aspect-[4/3] cursor-grab overflow-hidden rounded-[12px] bg-black/20 active:cursor-grabbing"
-                : "relative aspect-[4/3] overflow-hidden rounded-[12px] bg-black/20"
+                ? "relative aspect-[4/3] cursor-grab overflow-hidden rounded-[12px] bg-white active:cursor-grabbing"
+                : "relative aspect-[4/3] overflow-hidden rounded-[12px] bg-white"
             }
           >
             <Image
@@ -149,7 +149,7 @@ export function Lightbox({
               priority
             />
           </motion.div>
-          <figcaption className="mt-3 text-center text-base text-white">
+          <figcaption className="mt-3 text-center text-base text-deep-navy">
             {item.alt}
           </figcaption>
         </figure>
