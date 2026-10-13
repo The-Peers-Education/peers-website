@@ -9,7 +9,7 @@ export function CampusPreview({
 }: {
   items: readonly LightboxItem[];
 }) {
-  const preview = items.slice(0, 6);
+  const preview = items;
   const [index, setIndex] = useState<number | null>(null);
 
   return (

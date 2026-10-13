@@ -3,7 +3,7 @@ import { Container } from "@/components/Container";
 import { GalleryGrid } from "@/components/GalleryGrid";
 import { PageHero } from "@/components/PageHero";
 import { SchemaJsonLd } from "@/components/SchemaJsonLd";
-import { galleryItems, ogImage, school } from "@/lib/content";
+import { galleryItems, ogImage, resultItems, school } from "@/lib/content";
 import { loadGalleryPhotos } from "@/lib/cms";
 import { galleryPageSchema } from "@/lib/schema";
 
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default async function GalleryPage() {
-  const photos = (await loadGalleryPhotos()) ?? galleryItems;
+  const photos = [...((await loadGalleryPhotos()) ?? galleryItems), ...resultItems];
 
   return (
     <>
@@ -40,7 +40,7 @@ export default async function GalleryPage() {
       <PageHero
         kicker="Gallery"
         title={`Life at ${school.name}.`}
-        description="Campus mornings, assemblies, sports days, and classroom work. Click a photograph to open it."
+        description="Campus mornings, assemblies, sports days, classroom work, and results. Click a photograph to open it."
       />
       <section className="py-16 sm:py-24">
         <Container>

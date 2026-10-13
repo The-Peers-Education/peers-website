@@ -18,6 +18,7 @@ import {
   faqs,
   galleryItems,
   newsItems,
+  resultItems,
   programs,
   school,
   whyPeers,
@@ -33,7 +34,8 @@ export default async function HomePage() {
   ]);
   const previewNews = (publishedNews ?? newsItems).slice(0, 3);
   const campusPreview = (uploadedGallery ?? galleryItems).slice(0, 6);
-  const resultPhotos = homepagePhotos.album === "RESULTS" ? homepagePhotos.items : [];
+  const uploadedResults = homepagePhotos.album === "RESULTS" ? homepagePhotos.items : [];
+  const resultPhotos = uploadedResults.length > 0 ? uploadedResults : resultItems;
 
   return (
     <>
@@ -188,7 +190,7 @@ export default async function HomePage() {
             <SectionHeading kicker="On campus" title="Campus life" />
             <TextLink href="/gallery">View full gallery</TextLink>
           </div>
-          <CampusPreview items={campusPreview} />
+          <CampusPreview items={campusPreview.slice(0, 6)} />
         </Container>
       </section>
 
