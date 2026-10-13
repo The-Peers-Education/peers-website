@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# unsorted photo drop — keep the folder, ignore the files
+/image-inbox/*
+!/image-inbox/.gitkeep
+!/image-inbox/README.md

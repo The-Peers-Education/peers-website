@@ -308,6 +308,51 @@ export const applyingClasses = [
 
 export const resultItems = [
   {
+    src: "/images/results/result-12.jpg",
+    alt: "Inter Result 2026 board for Primal Academy, with Abdul Rehman Akram in 3rd position",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-13.jpg",
+    alt: "Inter Result 2026 top scores at Primal Academy of Commerce and Sciences",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-14.jpg",
+    alt: "Abdul Rehman Akram, 3rd position in the Lahore Board with 1131 marks",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-15.jpg",
+    alt: "BISE 9th class result 2026 for Biology and Computer Science",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-16.jpg",
+    alt: "BISE Lahore Board 9th class result 2026 poster",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-17.jpg",
+    alt: "Hira Waheed, Momina Butt, and Fatima Nasir with university positions and gold medals",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-18.jpg",
+    alt: "Gold, silver, and bronze medals in the UniCEP Art Design Olympiad and science competitions",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-19.jpg",
+    alt: "Momna Shafiq and H. Shaheer Amjad with calligraphy, debate, and naat positions",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-20.jpg",
+    alt: "Abdul Ghani, 2nd position in wrestling under BISE Lahore",
+    category: "Results",
+  },
+  {
     src: "/images/results/result-11.jpg",
     alt: "N-CATS Scienceon certificate poster for The Peers Education System",
     category: "Results",
@@ -410,6 +455,36 @@ export const galleryItems = [
     alt: "Campus entrance on a bright afternoon",
     category: "Campus",
   },
+  {
+    src: "/images/gallery/events/events-3.jpg",
+    alt: "School guests, including educators, a police officer, and Qasim Ali Shah",
+    category: "Events",
+  },
+  {
+    src: "/images/gallery/events/events-4.jpg",
+    alt: "Teachers' Day message from the principals",
+    category: "Events",
+  },
+  {
+    src: "/images/alumni/alumni-1.jpg",
+    alt: "Alumni in medicine, the armed forces, and public service",
+    category: "Alumni",
+  },
+] as const;
+
+export const videoItems = [
+  {
+    src: "/videos/mid-term-ptm-2026.mp4",
+    title: "Mid Term PTM 2026",
+  },
+  {
+    src: "/videos/exam-time.mp4",
+    title: "Exam time",
+  },
+  {
+    src: "/videos/primal-results-celebration.mp4",
+    title: "Primal results celebration",
+  },
 ] as const;
 
 export const galleryCategories = [
@@ -419,6 +494,7 @@ export const galleryCategories = [
   "Sports",
   "Academics",
   "Results",
+  "Alumni",
 ] as const;
 
 export const newsItems = [
