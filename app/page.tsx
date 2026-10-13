@@ -34,7 +34,7 @@ export default async function HomePage() {
   ]);
   const previewNews = (publishedNews ?? newsItems).slice(0, 3);
   const campusPreview = (uploadedGallery ?? galleryItems).slice(0, 6);
-  const uploadedResults = homepagePhotos.album === "RESULTS" ? homepagePhotos.items : [];
+  const uploadedResults = homepagePhotos.album === "RESULTS" ? [...homepagePhotos.items].reverse() : [];
   const resultPhotos = uploadedResults.length > 0 ? uploadedResults : resultItems;
 
   return (

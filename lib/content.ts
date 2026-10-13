@@ -308,42 +308,12 @@ export const applyingClasses = [
 
 export const resultItems = [
   {
-    src: "/images/results/result-1.jpg",
-    alt: "Students with N-CATS Scienceon certificates at The Peers Education System",
+    src: "/images/results/result-11.jpg",
+    alt: "N-CATS Scienceon certificate poster for The Peers Education System",
     category: "Results",
   },
   {
-    src: "/images/results/result-2.jpg",
-    alt: "N-CATS Scienceon medal and certificate announcement",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-3.jpg",
-    alt: "N-CATS Scienceon medal and certificate announcement",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-4.jpg",
-    alt: "A student receiving an N-CATS Scienceon certificate",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-5.jpg",
-    alt: "A student receiving an N-CATS Scienceon certificate",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-6.jpg",
-    alt: "A student receiving an N-CATS Scienceon certificate",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-7.jpg",
-    alt: "A student receiving an N-CATS Scienceon certificate",
-    category: "Results",
-  },
-  {
-    src: "/images/results/result-8.jpg",
+    src: "/images/results/result-10.jpg",
     alt: "Students celebrating N-CATS Scienceon certificates",
     category: "Results",
   },
@@ -353,13 +323,43 @@ export const resultItems = [
     category: "Results",
   },
   {
-    src: "/images/results/result-10.jpg",
+    src: "/images/results/result-8.jpg",
     alt: "Students celebrating N-CATS Scienceon certificates",
     category: "Results",
   },
   {
-    src: "/images/results/result-11.jpg",
-    alt: "N-CATS Scienceon certificate poster for The Peers Education System",
+    src: "/images/results/result-7.jpg",
+    alt: "A student receiving an N-CATS Scienceon certificate",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-6.jpg",
+    alt: "A student receiving an N-CATS Scienceon certificate",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-5.jpg",
+    alt: "A student receiving an N-CATS Scienceon certificate",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-4.jpg",
+    alt: "A student receiving an N-CATS Scienceon certificate",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-3.jpg",
+    alt: "N-CATS Scienceon medal and certificate announcement",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-2.jpg",
+    alt: "N-CATS Scienceon medal and certificate announcement",
+    category: "Results",
+  },
+  {
+    src: "/images/results/result-1.jpg",
+    alt: "Students with N-CATS Scienceon certificates at The Peers Education System",
     category: "Results",
   },
 ] as const;

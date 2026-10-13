@@ -32,7 +32,7 @@ export const metadata: Metadata = {
 };
 
 export default async function GalleryPage() {
-  const photos = [...((await loadGalleryPhotos()) ?? galleryItems), ...resultItems];
+  const photos = [...resultItems, ...((await loadGalleryPhotos()) ?? galleryItems)];
 
   return (
     <>
