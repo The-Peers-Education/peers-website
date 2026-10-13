@@ -179,7 +179,7 @@ export default async function HomePage() {
         <section className="py-12 sm:py-16 lg:py-24">
           <Container>
             <SectionHeading kicker="Board years" title="Results" />
-            <CampusPreview items={resultPhotos} />
+            <CampusPreview items={resultPhotos} pageSize={6} />
           </Container>
         </section>
       ) : null}
