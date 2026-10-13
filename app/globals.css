@@ -140,6 +140,21 @@ select:disabled,
   }
 }
 
+.results-swiper {
+  padding-bottom: 2.25rem;
+}
+
+.results-swiper .swiper-pagination-bullet {
+  width: 0.625rem;
+  height: 0.625rem;
+  background: var(--deep-navy);
+  opacity: 0.25;
+}
+
+.results-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
 @media (min-width: 1440px) {
   .home-hero {
     height: min(800px, 95vh);

@@ -1,10 +1,14 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { A11y, Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+import type { Swiper as SwiperInstance } from "swiper";
 import { Lightbox, type LightboxItem } from "@/components/Lightbox";
 import { Photo } from "@/components/Photo";
-import { cn } from "@/lib/cn";
+import "swiper/css";
+import "swiper/css/pagination";
 
 export function CampusPreview({
   items,
@@ -13,40 +17,87 @@ export function CampusPreview({
   items: readonly LightboxItem[];
   pageSize?: number;
 }) {
-  const [page, setPage] = useState(0);
+  const swiperRef = useRef<SwiperInstance | null>(null);
   const [index, setIndex] = useState<number | null>(null);
-  const pages = pageSize ? Math.max(1, Math.ceil(items.length / pageSize)) : 1;
-  const safePage = Math.min(page, pages - 1);
-  const start = pageSize ? safePage * pageSize : 0;
-  const visible = pageSize ? items.slice(start, start + pageSize) : items;
+  const [atStart, setAtStart] = useState(true);
+  const [atEnd, setAtEnd] = useState(false);
+  const paged = Boolean(pageSize && items.length > pageSize);
+  const pages = pageSize ? chunk(items, pageSize) : [items];
+
+  function syncEdges(swiper: SwiperInstance) {
+    setAtStart(swiper.isBeginning);
+    setAtEnd(swiper.isEnd);
+  }
 
   return (
     <>
-      <div className="mt-10">
-        {pages > 1 ? (
+      {paged ? (
+        <div className="mt-10">
           <div className="mb-4 flex items-center justify-end gap-2">
             <SliderButton
               label="Previous results"
-              disabled={safePage === 0}
-              onClick={() => setPage((current) => Math.max(0, current - 1))}
+              disabled={atStart}
+              onClick={() => swiperRef.current?.slidePrev()}
             >
               <ChevronLeft size={20} />
             </SliderButton>
             <SliderButton
               label="Next results"
-              disabled={safePage === pages - 1}
-              onClick={() => setPage((current) => Math.min(pages - 1, current + 1))}
+              disabled={atEnd}
+              onClick={() => swiperRef.current?.slideNext()}
             >
               <ChevronRight size={20} />
             </SliderButton>
           </div>
-        ) : null}
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
-          {visible.map((item, itemIndex) => (
+          <Swiper
+            className="results-swiper"
+            modules={[Pagination, A11y]}
+            speed={700}
+            spaceBetween={16}
+            pagination={{ clickable: true }}
+            watchOverflow
+            onSwiper={(swiper) => {
+              swiperRef.current = swiper;
+              syncEdges(swiper);
+            }}
+            onSlideChange={syncEdges}
+          >
+            {pages.map((page, pageIndex) => (
+              <SwiperSlide key={page[0]?.src ?? pageIndex}>
+                <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
+                  {page.map((item) => {
+                    const itemIndex = items.findIndex((entry) => entry.src === item.src);
+                    return (
+                      <button
+                        key={item.src}
+                        type="button"
+                        onClick={() => setIndex(itemIndex)}
+                        className="group relative aspect-[4/3] overflow-hidden rounded-[12px]"
+                        aria-label={`Open photograph: ${item.alt}`}
+                      >
+                        <Photo
+                          src={item.src}
+                          alt={item.alt}
+                          fill
+                          quality={75}
+                          className="object-cover"
+                          sizes="(max-width: 768px) 50vw, (max-width: 1280px) 33vw, 400px"
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      ) : (
+        <div className="mt-10 grid grid-cols-2 gap-3 md:grid-cols-3">
+          {items.map((item, itemIndex) => (
             <button
               key={item.src}
               type="button"
-              onClick={() => setIndex(start + itemIndex)}
+              onClick={() => setIndex(itemIndex)}
               className="group relative aspect-[4/3] overflow-hidden rounded-[12px]"
               aria-label={`Open photograph: ${item.alt}`}
             >
@@ -61,24 +112,7 @@ export function CampusPreview({
             </button>
           ))}
         </div>
-        {pages > 1 ? (
-          <div className="mt-4 flex justify-center gap-2">
-            {Array.from({ length: pages }, (_, dot) => (
-              <button
-                key={dot}
-                type="button"
-                aria-label={`Show results ${dot + 1} of ${pages}`}
-                aria-current={dot === safePage}
-                onClick={() => setPage(dot)}
-                className={cn(
-                  "size-2.5 rounded-full",
-                  dot === safePage ? "bg-deep-navy" : "bg-deep-navy/25",
-                )}
-              />
-            ))}
-          </div>
-        ) : null}
-      </div>
+      )}
       <Lightbox
         items={items}
         index={index}
@@ -87,6 +121,14 @@ export function CampusPreview({
       />
     </>
   );
+}
+
+function chunk<T>(list: readonly T[], size: number) {
+  const pages: T[][] = [];
+  for (let index = 0; index < list.length; index += size) {
+    pages.push(list.slice(index, index + size));
+  }
+  return pages;
 }
 
 function SliderButton({
