@@ -16,21 +16,24 @@ import { SchemaJsonLd } from "@/components/SchemaJsonLd";
 import {
   director,
   faqs,
+  galleryItems,
   newsItems,
   programs,
   school,
   whyPeers,
 } from "@/lib/content";
-import { loadHomepagePhotos, loadNewsStories } from "@/lib/cms";
+import { loadGalleryPhotos, loadHomepagePhotos, loadNewsStories } from "@/lib/cms";
 import { homePageSchema } from "@/lib/schema";
 
 export default async function HomePage() {
-  const [homepagePhotos, publishedNews] = await Promise.all([
+  const [uploadedGallery, homepagePhotos, publishedNews] = await Promise.all([
+    loadGalleryPhotos(),
     loadHomepagePhotos(),
     loadNewsStories(),
   ]);
   const previewNews = (publishedNews ?? newsItems).slice(0, 3);
-  const showingCampus = homepagePhotos.album === "CAMPUS";
+  const campusPreview = (uploadedGallery ?? galleryItems).slice(0, 6);
+  const resultPhotos = homepagePhotos.album === "RESULTS" ? homepagePhotos.items : [];
 
   return (
     <>
@@ -170,24 +173,22 @@ export default async function HomePage() {
         </Container>
       </section>
 
+      {resultPhotos.length > 0 ? (
+        <section className="py-12 sm:py-16 lg:py-24">
+          <Container>
+            <SectionHeading kicker="Board years" title="Results" />
+            <CampusPreview items={resultPhotos} />
+          </Container>
+        </section>
+      ) : null}
+
       <section className="py-12 sm:py-16 lg:py-24">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4">
-            <SectionHeading
-              kicker={showingCampus ? "On campus" : "Board years"}
-              title={showingCampus ? "Campus life" : "Results"}
-            />
-            {showingCampus ? <TextLink href="/gallery">View full gallery</TextLink> : null}
+            <SectionHeading kicker="On campus" title="Campus life" />
+            <TextLink href="/gallery">View full gallery</TextLink>
           </div>
-          {homepagePhotos.items.length > 0 ? (
-            <CampusPreview items={homepagePhotos.items} />
-          ) : (
-            <p className="mt-8 max-w-2xl text-base text-muted">
-              {showingCampus
-                ? "Campus photos will appear here once they are uploaded from the school office."
-                : "Result photos will appear here once they are uploaded from the school office."}
-            </p>
-          )}
+          <CampusPreview items={campusPreview} />
         </Container>
       </section>
 
